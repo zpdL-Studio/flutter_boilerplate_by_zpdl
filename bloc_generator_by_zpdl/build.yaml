@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      bloc_generator_by_zpdl|bloc_by_zpdl:
+        enabled: true
+
+builders:
+  bloc_by_zpdl:
+      target: ":bloc_generator_by_zpdl"
+      import: "package:bloc_generator_by_zpdl/bloc_generator_by_zpdl.dart"
+      builder_factories: ["blocByZpdl"]
+      build_extensions: {".dart":[".bloc_by_zpdl.g.part"]}
+      auto_apply: dependents
+      build_to: cache
+      applies_builders: ["source_gen|combining_builder"]

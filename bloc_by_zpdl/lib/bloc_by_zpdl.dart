@@ -1,7 +1,8 @@
 library bloc_by_zpdl;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:flutter/material.dart';
+
+export 'annotation.dart';
+export 'bloc/bloc.dart';
+export 'bloc/bloc_provider.dart';
+export 'bloc/state/bloc_state.dart';
