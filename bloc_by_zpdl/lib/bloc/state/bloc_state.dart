@@ -13,10 +13,10 @@ abstract class BLoCState<T extends BLoCProvider> extends State<T> implements BLo
   }
 
   @override
+  @mustCallSuper
   Widget build(BuildContext context) => widget.builder(context, this);
 
   @override
-  @mustCallSuper
   void dispose() {
     super.dispose();
     disposeBLoC();

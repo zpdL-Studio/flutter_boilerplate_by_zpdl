@@ -2,7 +2,7 @@ import 'package:bloc_by_zpdl/bloc_by_zpdl.dart';
 
 part 'bloc_generate_example.g.dart';
 
-@BLoCStateAnnotation()
+
 class BLoCTest {
   final String firstName;
   final String lastName;
@@ -14,6 +14,7 @@ class BLoCTest {
   BLoCTest({required this.firstName, required this.lastName, this.dateOfBirth, required this.callback, this.callbackNullable, required this.callbackParam});
 }
 
+@BLoCStateAnnotation(parameter: BLoCTest, providerName: 'BLoCTestProvider', providerBuilder: BLoCTestBuilder)
 class BLoCTestBLoC extends $BLoCTestBLoC {
 
   @override
@@ -21,6 +22,18 @@ class BLoCTestBLoC extends $BLoCTestBLoC {
     // TODO: implement disposeBLoC
   }
 }
+
+
+class BLoCTestBuilder extends BLoCBuilder<BLoCTestBLoC> {
+  BLoCTestBuilder(BLoCTestBLoC bLoC) : super(bLoC);
+
+  @override
+  Widget builder(BuildContext context, BLoCTestBLoC bLoC) {
+    // TODO: implement builder
+    throw UnimplementedError();
+  }
+}
+
 // class $BLoCTest {
 //
 //   BLoGTest get bLoGTest => _BLoCTestImple();
