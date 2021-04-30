@@ -32,7 +32,7 @@ abstract class BLoCBuilder<T extends BLoC> extends StatelessWidget {
 
   final T _bloC;
 
-  const BLoCBuilder(T bLoC): this._bloC = bLoC;
+  const BLoCBuilder(T bLoC): _bloC = bLoC;
 
   @override
   Widget build(BuildContext context) {

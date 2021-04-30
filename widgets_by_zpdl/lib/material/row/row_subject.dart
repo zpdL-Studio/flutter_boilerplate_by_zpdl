@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_by_zpdl/material.dart';
+
+import '../../material.dart';
 
 class RowSubject extends StatelessWidget {
 
@@ -55,13 +56,13 @@ class RowSubject extends StatelessWidget {
     ShapeBorder shape = const CircleBorder(),
     GestureTapCallback? onTap}) {
     return ElevationButton(
+      color: backgroundColor,
+      shape: shape,
+      onTap: onTap,
       child: Padding(
         padding: padding,
         child: child,
       ),
-      color: backgroundColor,
-      shape: shape,
-      onTap: onTap,
     );
   }
 
@@ -71,13 +72,13 @@ class RowSubject extends StatelessWidget {
     ShapeBorder shape = const CircleBorder(),
     GestureTapCallback? onTap}) {
     return ScaleButton(
+      pressScale: pressScale,
+      shape: shape,
+      onTap: onTap,
       child: Padding(
         padding: padding,
         child: child,
       ),
-      pressScale: pressScale,
-      shape: shape,
-      onTap: onTap,
     );
   }
 }

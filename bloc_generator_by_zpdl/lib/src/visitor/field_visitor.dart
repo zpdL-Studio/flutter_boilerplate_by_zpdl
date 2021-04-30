@@ -8,7 +8,7 @@ class FieldVisitor extends ConstructorVisitor {
   final Map<String, DartType> fields = {};
 
   @override
-  visitFieldElement(FieldElement element) {
+  dynamic visitFieldElement(FieldElement element) {
     fields[element.name] = element.type;
   }
 }
@@ -19,7 +19,7 @@ class FieldFunctionVisitor extends ConstructorVisitor {
   final Map<String, FunctionType> functions = {};
 
   @override
-  visitFieldElement(FieldElement element) {
+  dynamic visitFieldElement(FieldElement element) {
     if(element.type is FunctionType) {
       functions[element.name] = element.type as FunctionType;
     } else {

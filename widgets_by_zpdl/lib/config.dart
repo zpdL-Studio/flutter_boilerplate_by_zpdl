@@ -1,5 +1,5 @@
 
-const Duration configAnimateDuration = const Duration(milliseconds: 300);
+const Duration configAnimateDuration = Duration(milliseconds: 300);
 
 /// Button Config
 const double configDisabledOpacity = 0.6;

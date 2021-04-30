@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_by_zpdl/material.dart';
 
 import '../../config.dart';
+import '../../material.dart';
 
 class ScaleButton extends StatefulWidget {
 

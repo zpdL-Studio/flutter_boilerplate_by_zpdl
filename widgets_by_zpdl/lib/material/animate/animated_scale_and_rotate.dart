@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 import '../../config.dart';
 
@@ -14,9 +15,9 @@ class AnimatedScale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedScaleAndRotate(
-      child: child,
       scale: scale,
       duration: duration,
+      child: child,
     );
   }
 }
@@ -32,9 +33,9 @@ class AnimatedRotate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedScaleAndRotate(
-      child: child,
       degree: degree,
       duration: duration,
+      child: child,
     );
   }
 }

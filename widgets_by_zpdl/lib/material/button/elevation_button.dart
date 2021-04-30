@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_by_zpdl/material.dart';
 
 import '../../config.dart';
+import '../../material.dart';
 
 class ElevationButton extends StatefulWidget {
 
@@ -80,7 +80,6 @@ class _ElevationButtonState extends State<ElevationButton> with SingleTickerProv
       opacity: widget.onTap != null ? 1.0 : (widget.disabledOpacity ?? configDisabledOpacity),
       duration: widget.duration ?? configAnimateDuration,
       child: TouchWell(
-        child: widget.child,
         onTap: widget.onTap != null ? () {
           _tryAnimation(widget.elevation ?? configElevationButton);
           final tap = widget.onTap;
@@ -97,6 +96,7 @@ class _ElevationButtonState extends State<ElevationButton> with SingleTickerProv
         onTapCancel: () {
           _tryAnimation(widget.elevation ?? configElevationButton);
         },
+        child: widget.child,
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 
 class ColumnWrap extends SingleChildRenderObjectWidget {
   final double? width;
+  @override
   final Widget child;
 
   ColumnWrap({
@@ -16,7 +17,7 @@ class ColumnWrap extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, _ColumnWrapRenderBox renderObject) {
-    renderObject..width = width;
+    renderObject.width = width;
   }
 }
 
@@ -25,7 +26,7 @@ class _ColumnWrapRenderBox extends RenderShiftedBox {
   _ColumnWrapRenderBox({
     double? width,
     RenderBox? child,
-  })  : this._width = width,
+  })  : _width = width,
         super(child);
 
   double? _width;
@@ -65,6 +66,7 @@ class _ColumnWrapRenderBox extends RenderShiftedBox {
 
 class RowWrap extends SingleChildRenderObjectWidget {
   final double? height;
+  @override
   final Widget child;
 
   RowWrap({
@@ -78,7 +80,7 @@ class RowWrap extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, _RowWrapRenderBox renderObject) {
-    renderObject..height = height;
+    renderObject.height = height;
   }
 }
 
@@ -87,7 +89,7 @@ class _RowWrapRenderBox extends RenderShiftedBox {
   _RowWrapRenderBox({
     double? height,
     RenderBox? child,
-  })  : this._height = height,
+  })  : _height = height,
         super(child);
 
   double? _height;

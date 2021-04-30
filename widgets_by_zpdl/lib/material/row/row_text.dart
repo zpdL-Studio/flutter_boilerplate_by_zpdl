@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_by_zpdl/material.dart';
+
+import '../../material.dart';
 
 class RowPrefixText extends StatelessWidget {
 

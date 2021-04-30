@@ -8,9 +8,9 @@ class ConstructorVisitor extends SimpleElementVisitor {
   DartType get className => constructor.type.returnType;
 
   @override
-  visitConstructorElement(ConstructorElement element) {
+  dynamic visitConstructorElement(ConstructorElement element) {
     // print("BLoCStateVisitor visitConstructorElement $element");
-    this.constructor = element;
+    constructor = element;
   }
 
   // @override

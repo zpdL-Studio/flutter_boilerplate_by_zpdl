@@ -1,25 +1,24 @@
 import 'dart:async';
 
-import 'package:bloc_by_zpdl/annotation.dart';
-
-import 'string_buffer_extension.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/nullability_suffix.dart';
+import 'package:analyzer/dart/element/type.dart';
+import 'package:bloc_by_zpdl/annotation.dart';
 import 'package:build/build.dart';
 import 'package:build/src/builder/build_step.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:analyzer/dart/element/type.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
 
+import 'string_buffer_extension.dart';
 import 'visitor/constructor_visitor.dart';
 import 'visitor/field_visitor.dart';
 
 class BLoCStateGenerator extends GeneratorForAnnotation<BLoCStateAnnotation> {
   @override
   FutureOr<String> generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
-    print("KKH element : $element");
-    print("KKH annotation : $annotation");
-    print("KKH annotation : ${annotation.objectValue}");
-    print("KKH buildStep : $buildStep");
+    print('KKH element : $element');
+    print('KKH annotation : $annotation');
+    print('KKH annotation : ${annotation.objectValue}');
+    print('KKH buildStep : $buildStep');
 
     var visitor = ConstructorVisitor();
     element.visitChildren(visitor);
