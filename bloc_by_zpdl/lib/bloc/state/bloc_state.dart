@@ -8,7 +8,7 @@ export '../bloc_provider.dart';
 abstract class BLoCState<T extends BLoCProvider> extends State<T> implements BLoC {
 
   static T of<T extends BLoCState>(BuildContext context) {
-    final T state = context.findAncestorStateOfType<T>()!;
+    final state = context.findAncestorStateOfType<T>()!;
     return state;
   }
 

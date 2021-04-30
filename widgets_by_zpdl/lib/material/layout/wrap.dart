@@ -125,7 +125,7 @@ class _RowWrapRenderBox extends RenderShiftedBox {
       final measureHeight = height ?? child.size.height;
       size = Size(child.size.width, measureHeight);
       if(child.parentData is BoxParentData) {
-        final BoxParentData childParentData = child.parentData as BoxParentData;
+        final childParentData = child.parentData as BoxParentData;
         childParentData.offset = Offset(0, (measureHeight - child.size.height) / 2);
       }
     }

@@ -2,7 +2,6 @@ include: package:pedantic/analysis_options.yaml
 
 linter:
   rules:
-    omit_local_variable_types: false
     file_names: true
     type_annotate_public_apis: true
     prefer_mixin: true

@@ -41,7 +41,7 @@ class BLoCStateGenerator extends GeneratorForAnnotation<BLoCStateAnnotation> {
       }
     }
 
-    String providerName = '${visitor.className}Provider';
+    var providerName = '${visitor.className}Provider';
     if(annotation.read('providerName').isString) {
       providerName = annotation.read('providerName').stringValue;
     }
@@ -76,7 +76,7 @@ class BLoCStateGenerator extends GeneratorForAnnotation<BLoCStateAnnotation> {
       sb.writeLine(1, 'void didUpdateWidget(covariant $providerName oldWidget) {');
       sb.writeLine(2, 'super.didUpdateWidget(oldWidget);');
 
-      StringBuffer equalSb = StringBuffer();
+      var equalSb = StringBuffer();
       for (final field in parameter.fields.entries) {
         if(equalSb.isNotEmpty) {
           equalSb.write(' || ');
@@ -100,7 +100,7 @@ class BLoCStateGenerator extends GeneratorForAnnotation<BLoCStateAnnotation> {
       ConstructorVisitor? providerBuilder) {
     sb.writeln('class $providerName extends BLoCProvider<${visitor.className}> {');
 
-    StringBuffer constructorBuilder = StringBuffer();
+    var constructorBuilder = StringBuffer();
     constructorBuilder.write('$providerName({Key? key');
     if(providerBuilder == null) {
       constructorBuilder.write(', required BLoCBuilderCallback<${visitor.className}> builder');
