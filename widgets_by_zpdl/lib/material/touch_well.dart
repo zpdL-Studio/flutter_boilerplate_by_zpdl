@@ -44,47 +44,41 @@ class TouchWell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(touchWellIsTop) {
-      return Stack(
-        children: [
-          child,
-          Positioned.fill(child: _buildMaterial(null))
-        ],
-      );
-    } else {
-      return _buildMaterial(child);
-    }
+    return Material(
+        color: bgColor,
+        shape: shape,
+        elevation: elevation,
+        clipBehavior: shape != null ? Clip.hardEdge : Clip.none,
+        child: touchWellIsTop == true
+            ? Stack(
+          children: [child, Positioned.fill(child: Material(color: Colors.transparent ,child: _buildInkWell(null)))],
+        )
+            : _buildInkWell(child));
   }
 
-  Material _buildMaterial(Widget? child) {
-    return Material(
-      color: bgColor,
-      shape: shape,
-      elevation: elevation,
-      clipBehavior: shape != null ? Clip.hardEdge : Clip.none,
-      child: InkWell(
-        onTap: protectMultiTap ? onTap != null ? () {
-          final now = DateTime.now().millisecondsSinceEpoch;
-          if(now - _touchWellProtectedMultiTapTimeMs > 300) {
-            _touchWellProtectedMultiTapTimeMs = now;
-            final tap = onTap;
-            if(tap != null) {
-              tap();
-            }
+  Widget _buildInkWell(Widget? child) {
+    return InkWell(
+      onTap: protectMultiTap ? onTap != null ? () {
+        final now = DateTime.now().millisecondsSinceEpoch;
+        if(now - _touchWellProtectedMultiTapTimeMs > 300) {
+          _touchWellProtectedMultiTapTimeMs = now;
+          final tap = onTap;
+          if(tap != null) {
+            tap();
           }
-        } : null : onTap,
-        onDoubleTap: onDoubleTap,
-        onLongPress: onLongPress,
-        onTapDown: onTapDown,
-        onTapCancel: onTapCancel,
-        onHighlightChanged: onHighlightChanged,
-        onHover: onHover,
-        focusColor: focusColor,
-        hoverColor: hoverColor,
-        highlightColor: highlightColor,
-        splashColor: splashColor,
-        child: child,
-      ),
+        }
+      } : null : onTap,
+      onDoubleTap: onDoubleTap,
+      onLongPress: onLongPress,
+      onTapDown: onTapDown,
+      onTapCancel: onTapCancel,
+      onHighlightChanged: onHighlightChanged,
+      onHover: onHover,
+      focusColor: focusColor,
+      hoverColor: hoverColor,
+      highlightColor: highlightColor,
+      splashColor: splashColor,
+      child: child,
     );
   }
 }
