@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../config.dart';
-import '../../material.dart';
+import '../../widget/animate/animated_scale_and_rotate.dart';
+import '../touch_well.dart';
 
 class ScaleButton extends StatefulWidget {
 
