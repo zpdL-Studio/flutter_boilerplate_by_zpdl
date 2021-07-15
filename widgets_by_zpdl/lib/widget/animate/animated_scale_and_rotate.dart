@@ -78,10 +78,11 @@ class _AnimatedScaleAndRotateState extends State<AnimatedScaleAndRotate> with Si
 
   @override
   void dispose() {
-    super.dispose();
     _animation?.removeListener(_animate);
     _animation = null;
     _controller.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -109,7 +110,7 @@ class _AnimatedScaleAndRotateState extends State<AnimatedScaleAndRotate> with Si
 
   void _animate() {
     final animation = _animation;
-    if(animation != null) {
+    if(animation != null && mounted) {
       setState(() {
         _scale = _srcScale + (widget.scale - _srcScale) * animation.value;
         _degree = (_srcDegree + (widget.degree - _srcDegree) * animation.value);

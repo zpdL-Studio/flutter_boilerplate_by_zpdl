@@ -128,7 +128,7 @@ class Toast {
         var padding = this.padding ?? theme.padding;
 
         if(useSafeArea) {
-          final MediaQueryData data = MediaQuery.of(context);
+          final data = MediaQuery.of(context);
           padding = padding.add(data.padding);
         }
 

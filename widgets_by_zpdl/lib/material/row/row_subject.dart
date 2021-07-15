@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../material.dart';
+import '../button/elevation_button.dart';
+import '../button/scale_button.dart';
 
 class RowSubject extends StatelessWidget {
 

@@ -15,6 +15,8 @@ class ElevationButton extends StatefulWidget {
   final double? elevation;
   final Duration? duration;
 
+  final bool touchWellIsTop;
+
   const ElevationButton({
     Key? key,
     required this.child,
@@ -24,6 +26,7 @@ class ElevationButton extends StatefulWidget {
     this.disabledOpacity,
     this.elevation,
     this.duration,
+    this.touchWellIsTop = false,
   }) : super(key: key);
 
   @override
@@ -54,7 +57,7 @@ class _ElevationButtonState extends State<ElevationButton> with SingleTickerProv
   }
 
   void _tryAnimation(double end) {
-    if(_elevation == end) {
+    if(_elevation == end && !_controller.isAnimating) {
       return;
     }
     _animation?.removeListener(_onElevationAnimate);
@@ -90,6 +93,7 @@ class _ElevationButtonState extends State<ElevationButton> with SingleTickerProv
         shape: widget.shape,
         bgColor: widget.color ?? Theme.of(context).backgroundColor,
         elevation: _elevation,
+        touchWellIsTop: widget.touchWellIsTop,
         onTapDown: (_) {
           _tryAnimation(0.0);
         },
