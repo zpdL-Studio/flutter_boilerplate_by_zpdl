@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      assets_generator_by_zpdl|assets_by_zpdl:
+        enabled: true
+
+builders:
+  assets_by_zpdl:
+      target: ":assets_generator_by_zpdl"
+      import: "package:assets_generator_by_zpdl/assets_generator_by_zpdl.dart"
+      builder_factories: ["assetsByZpdl"]
+      build_extensions: {".dart":[".assets_by_zpdl.g.part"]}
+      auto_apply: dependents
+      build_to: cache
+      applies_builders: ["source_gen|combining_builder"]

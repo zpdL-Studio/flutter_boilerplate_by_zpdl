@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'assets_example.dart';
+
 void main() {
   runApp(MyApp());
 }

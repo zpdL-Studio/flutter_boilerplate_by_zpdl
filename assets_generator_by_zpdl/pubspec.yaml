@@ -1,12 +1,10 @@
-name: bloc_generator_by_zpdl
+name: assets_generator_by_zpdl
 description: A new Flutter package project.
 version: 0.0.1
-author: zpdl9089@gmail.com
 homepage:
-publish_to: none
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,8 +12,8 @@ dependencies:
     sdk: flutter
   build: ^2.0.3
   source_gen:
-  bloc_by_zpdl:
-    path: ../bloc_by_zpdl
+  assets_annotation_by_zpdl:
+    path: ../assets_annotation_by_zpdl
 
 dev_dependencies:
   flutter_test:
