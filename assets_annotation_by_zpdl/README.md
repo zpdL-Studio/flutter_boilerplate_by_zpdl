@@ -1,14 +1,19 @@
-# assets_annotation_by_zpdl
+A library for Dart developers.
 
-A new Flutter package project.
+Created from templates made available by Stagehand under a BSD-style
+[license](https://github.com/zpdL-Studio/flutter_boilerplate_by_zpdl/blob/main/assets_annotation_by_zpdl/LICENSE).
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+A simple usage example:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+import 'package:assets_annotation_by_zpdl/assets_annotation_by_zpdl.dart';
+
+main() {
+  var assets = Assets();
+}
+
+@assetsAnnotation
+class Assets {}
+```
