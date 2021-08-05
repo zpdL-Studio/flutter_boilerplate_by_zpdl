@@ -18,8 +18,8 @@ class _Image {
   factory _Image() => _instance;
   _Image._();
 
-  final _ImageAlbum2 album_2 = const _ImageAlbum2();
-  final _ImageImageEdit image_edit = const _ImageImageEdit();
+  final _ImageAlbum2 album2 = const _ImageAlbum2();
+  final _ImageImageEdit imageEdit = const _ImageImageEdit();
   final _ImageGuide guide = const _ImageGuide();
 
   final String fog_6126432_1920 = 'assets/image/fog_6126432_1920.jpg';

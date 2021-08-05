@@ -28,13 +28,12 @@ dependencies:
     path: bloc_by_zpdl
   widgets_by_zpdl:
     path: widgets_by_zpdl
-  assets_annotation_by_zpdl:
-    path: assets_annotation_by_zpdl
+  assets_annotation_by_zpdl: ^1.0.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  json_serializable: ^4.1.0
+#  json_serializable: ^4.1.0
 
 dev_dependencies:
   flutter_test:

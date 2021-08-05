@@ -12,8 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  build: ^2.0.3
-  source_gen:
+  build: ^2.1.0
+  source_gen: ^1.0.3
   bloc_by_zpdl:
     path: ../bloc_by_zpdl
 

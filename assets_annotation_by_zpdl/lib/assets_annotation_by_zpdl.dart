@@ -10,6 +10,7 @@ class AssetsAnnotation {
   /// The first letter is written in lowercase. The first letter of the rest of the following words is capitalized.
   /// ex) isCamelCase
   final bool isCamelCase;
+
   /// Snake case enable value
   /// Place an underline in the middle of each word joined.
   /// ex) is_snake_case

@@ -2,7 +2,6 @@
 import 'package:build_runner_core/build_runner_core.dart' as _i1;
 import 'package:assets_generator_by_zpdl/assets_generator_by_zpdl.dart' as _i2;
 import 'package:bloc_generator_by_zpdl/bloc_generator_by_zpdl.dart' as _i3;
-import 'package:json_serializable/builder.dart' as _i4;
 import 'package:source_gen/builder.dart' as _i5;
 import 'package:build_modules/builders.dart' as _i6;
 import 'package:build_web_compilers/builders.dart' as _i7;
@@ -19,10 +18,6 @@ final _builders = <_i1.BuilderApplication>[
       appliesBuilders: const [r'source_gen:combining_builder']),
   _i1.apply(r'bloc_generator_by_zpdl:bloc_by_zpdl', [_i3.blocByZpdl],
       _i1.toDependentsOf(r'bloc_generator_by_zpdl'),
-      hideOutput: true,
-      appliesBuilders: const [r'source_gen:combining_builder']),
-  _i1.apply(r'json_serializable:json_serializable', [_i4.jsonSerializable],
-      _i1.toDependentsOf(r'json_serializable'),
       hideOutput: true,
       appliesBuilders: const [r'source_gen:combining_builder']),
   _i1.apply(r'source_gen:combining_builder', [_i5.combiningBuilder],
