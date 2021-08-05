@@ -1,3 +1,7 @@
+## 1.0.3
+
+* lib/assets_annotation_by_zpdl.dart is not formatted according to dartfmt
+
 ## 1.0.2
 
 * add isCamelCase & isSnakeCase
