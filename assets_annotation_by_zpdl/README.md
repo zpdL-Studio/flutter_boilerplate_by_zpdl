@@ -1,7 +1,6 @@
-A library for Dart developers.
+#A library for Flutter developers.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/zpdL-Studio/flutter_boilerplate_by_zpdl/blob/main/assets_annotation_by_zpdl/LICENSE).
+Annotaion for the assets_generator_by_zpdl package. Incluud only AssetsAnnotation class.
 
 ## Usage
 
