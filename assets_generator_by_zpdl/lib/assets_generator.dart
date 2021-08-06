@@ -63,7 +63,7 @@ class AssetsGenerator extends GeneratorForAnnotation<AssetsAnnotation> {
         } else {
           // File
           final file = File.fromUri(uri);
-          if (file.existsSync()) {
+          if (file.existsSync() && file.name.trim().isNotEmpty) {
             var node = _addPath(caseType, root, file.parent.uri.pathSegments);
             _addFile(node, file);
           }
@@ -153,7 +153,7 @@ class AssetsGenerator extends GeneratorForAnnotation<AssetsAnnotation> {
   }
 
   void _addFile(Map<String, dynamic> node, File file) {
-    if (file.existsSync()) {
+    if (file.existsSync() && file.name.trim().isNotEmpty) {
       node[file.fileName] = file;
     }
   }
