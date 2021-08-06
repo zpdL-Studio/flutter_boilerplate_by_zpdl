@@ -213,10 +213,31 @@ class AssetsGenerator extends GeneratorForAnnotation<AssetsAnnotation> {
     return results;
   }
 
+  static final RegExp _nonAlphaNumeric = RegExp('[^a-zA-Z0-9_]');
+  static final RegExp _alpha = RegExp('[^a-zA-Z]');
+
+  String _caseValueString(String str, String firstLetter) {
+    var sb = StringBuffer();
+
+    var nonAlphaNumeric = str.replaceAll(_nonAlphaNumeric, '_');
+    if(nonAlphaNumeric.isNotEmpty) {
+      sb.write(nonAlphaNumeric[0].replaceAll(_alpha, firstLetter));
+      sb.write(nonAlphaNumeric.substring(1));
+    }
+    return sb.toString();
+  }
+
   String _caseString(CaseType caseType, String str) {
     switch (caseType) {
       case CaseType.UNDEFINED:
-        return str;
+        var sb = StringBuffer();
+
+        var nonAlphaNumeric = str.replaceAll(_nonAlphaNumeric, '_');
+        if(nonAlphaNumeric.isNotEmpty) {
+          sb.write(nonAlphaNumeric[0].replaceAll(_alpha, 'u'));
+          sb.write(nonAlphaNumeric.substring(1));
+        }
+        return _caseValueString(str, 'u');
       case CaseType.CAMEL:
         return _caseCamelString(str);
       case CaseType.SNAKE:
@@ -228,14 +249,20 @@ class AssetsGenerator extends GeneratorForAnnotation<AssetsAnnotation> {
     if (str.isNotEmpty) {
       var sb = StringBuffer();
       var upper = false;
-      for (var i = 0; i < str.length; i++) {
-        if (upper) {
-          sb.write(str[i].toUpperCase());
-          upper = false;
-        } else if (str[i] == '_') {
+
+      var nonAlphaNumeric = _caseValueString(str, '_');
+      for (var i = 0; i < nonAlphaNumeric.length; i++) {
+        if (nonAlphaNumeric[i] == '_') {
           upper = true;
+        } else if (upper) {
+          if(sb.isEmpty) {
+            sb.write(nonAlphaNumeric[i].toLowerCase());
+          } else {
+            sb.write(nonAlphaNumeric[i].toUpperCase());
+          }
+          upper = false;
         } else {
-          sb.write(str[i]);
+          sb.write(nonAlphaNumeric[i]);
         }
       }
 
@@ -248,14 +275,16 @@ class AssetsGenerator extends GeneratorForAnnotation<AssetsAnnotation> {
     if (str.isNotEmpty) {
       var sb = StringBuffer();
       var upper = true;
-      for (var i = 0; i < str.length; i++) {
-        if (upper) {
-          sb.write(str[i].toUpperCase());
-          upper = false;
-        } else if (str[i] == '_') {
+      var nonAlphaNumeric = _caseValueString(str, '_');
+
+      for (var i = 0; i < nonAlphaNumeric.length; i++) {
+        if (nonAlphaNumeric[i] == '_') {
           upper = true;
+        } else if (upper) {
+          sb.write(nonAlphaNumeric[i].toUpperCase());
+          upper = false;
         } else {
-          sb.write(str[i]);
+          sb.write(nonAlphaNumeric[i]);
         }
       }
 
@@ -267,13 +296,19 @@ class AssetsGenerator extends GeneratorForAnnotation<AssetsAnnotation> {
   String _caseSnakeString(String str) {
     if (str.isNotEmpty) {
       var sb = StringBuffer();
-      for (var i = 0; i < str.length; i++) {
-        final upperCase = str[i].toUpperCase();
-        final lowerCase = str[i].toLowerCase();
-        if (upperCase != lowerCase && upperCase == str[i]) {
-          sb.write('_${str[i].toLowerCase()}');
+      var nonAlphaNumeric = str.replaceAll(_nonAlphaNumeric, '_');
+
+      for (var i = 0; i < nonAlphaNumeric.length; i++) {
+        final upperCase = nonAlphaNumeric[i].toUpperCase();
+        final lowerCase = nonAlphaNumeric[i].toLowerCase();
+        if(sb.isEmpty && nonAlphaNumeric[i] == '_') {
+          continue;
+        }
+
+        if (upperCase != lowerCase && upperCase == nonAlphaNumeric[i]) {
+          sb.write('_${nonAlphaNumeric[i].toLowerCase()}');
         } else {
-          sb.write(str[i]);
+          sb.write(nonAlphaNumeric[i]);
         }
       }
 
@@ -318,7 +353,18 @@ extension FileExtension on File {
 
   String get extension {
     final fileName = this.fileName;
-    return fileName.contains('.') ? fileName.split('.').last : '';
+    if(fileName.contains('.')) {
+      final sb = StringBuffer();
+      final splits = fileName.split('.');
+      for(var i = 1; i < splits.length; i++) {
+        if(sb.isNotEmpty) {
+          sb.write('.');
+        }
+        sb.write(splits[i]);
+      }
+      return sb.toString();
+    }
+    return '';
   }
 }
 

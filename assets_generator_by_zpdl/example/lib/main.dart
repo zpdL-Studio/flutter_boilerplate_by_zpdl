@@ -52,9 +52,9 @@ class MyHomePage extends StatelessWidget {
       body: ListView(
         children: [
           _buildListTile(
-              assets.image.fog_6126432_1920,
-              assetsCamel.image.fog61264321920,
-              assetsSnake.image.fog_6126432_1920),
+              assets.image.uog____61___264____32__1____920,
+              assetsCamel.image.og61264321920,
+              assetsSnake.image.og____61___264____32__1____920),
           _buildListTile(
               assets.image.camelAlbum.iconCalendarJpg,
               assetsCamel.image.camelAlbum.iconCalendarJpg,

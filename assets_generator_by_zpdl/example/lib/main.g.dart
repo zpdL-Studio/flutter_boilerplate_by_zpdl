@@ -31,7 +31,14 @@ class _AssetsImage {
   final _AssetsImageCamelAlbum camelAlbum = const _AssetsImageCamelAlbum();
   final _AssetsImageSnakeGuide snake_guide = const _AssetsImageSnakeGuide();
 
-  final String fog_6126432_1920 = 'assets/image/fog_6126432_1920.jpg';
+  final String uog____61___264____32__1____920 =
+      'assets/image/_og_+  61   264  + 32_ 1  -=920.jpg';
+  final String fog____61___264____32__1____920Jpg =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg';
+  final String fog____61___264____32__1____920JpgPng =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg.png';
+  final String fog____61___264____32__1____920JpgJpg =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg.jpg';
 }
 
 class _AssetsImageCamelAlbum {
@@ -77,7 +84,14 @@ class _AssetsCamelImage {
   final _AssetsCamelImageSnakeGuide snakeGuide =
       const _AssetsCamelImageSnakeGuide();
 
-  final String fog61264321920 = 'assets/image/fog_6126432_1920.jpg';
+  final String og61264321920 =
+      'assets/image/_og_+  61   264  + 32_ 1  -=920.jpg';
+  final String fog61264321920Jpg =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg';
+  final String fog61264321920JpgPng =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg.png';
+  final String fog61264321920JpgJpg =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg.jpg';
 }
 
 class _AssetsCamelImageCamelAlbum {
@@ -123,7 +137,14 @@ class _AssetsSnakeImage {
   final _AssetsSnakeImageSnakeGuide snake_guide =
       const _AssetsSnakeImageSnakeGuide();
 
-  final String fog_6126432_1920 = 'assets/image/fog_6126432_1920.jpg';
+  final String og____61___264____32__1____920 =
+      'assets/image/_og_+  61   264  + 32_ 1  -=920.jpg';
+  final String fog____61___264____32__1____920_jpg =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg';
+  final String fog____61___264____32__1____920_jpg_png =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg.png';
+  final String fog____61___264____32__1____920_jpg_jpg =
+      'assets/image/fog_+  61   264  + 32_ 1  -=920.jpg.jpg';
 }
 
 class _AssetsSnakeImageCamelAlbum {
