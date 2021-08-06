@@ -10,5 +10,5 @@ flutter create --androidx --org studio.zpdl --template=plugin --platforms=androi
 # Create build.dart
 flutter packages pub run build_runner build --delete-conflicting-outputs
 
-
+flutter pub run build_runner build clean
 flutter pub run build_runner build --delete-conflicting-outputs

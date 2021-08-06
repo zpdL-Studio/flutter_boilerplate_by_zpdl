@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  assets_annotation_by_zpdl: ^1.0.2
+  assets_annotation_by_zpdl: ^1.0.3
 
 dev_dependencies:
   flutter_test:

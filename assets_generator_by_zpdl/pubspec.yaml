@@ -1,16 +1,12 @@
 name: assets_generator_by_zpdl
 description: Flutter assets code generator. Read assets in pubsepec.yaml and generates code.
-version: 1.0.0
+version: 1.0.2
 homepage: https://github.com/zpdL-Studio/flutter_boilerplate_by_zpdl
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-
   analyzer: ^1.6.0
   yaml: ^3.1.0
   build: ^2.1.0
@@ -18,7 +14,5 @@ dependencies:
   assets_annotation_by_zpdl: ^1.0.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   pedantic: ^1.11.0
 
