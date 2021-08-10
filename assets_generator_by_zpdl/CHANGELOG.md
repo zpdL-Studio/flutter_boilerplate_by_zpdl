@@ -1,3 +1,7 @@
+## 1.1.0
+
+* add version
+
 ## 1.0.5
 
 * check alphabet fixed

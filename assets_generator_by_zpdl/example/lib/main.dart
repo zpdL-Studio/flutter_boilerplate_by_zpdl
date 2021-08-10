@@ -8,7 +8,7 @@ void main() {
 }
 
 /// original naming
-@assetsAnnotation
+@AssetsAnnotation(version: '1.0.0')
 class Assets {
   const Assets();
 }
@@ -16,7 +16,7 @@ class Assets {
 const assets = Assets();
 
 /// camel case naming
-@assetsAnnotationCamel
+@AssetsAnnotation.camelCase(version: '1.0.0')
 class AssetsCamel {
   const AssetsCamel();
 }
@@ -24,7 +24,7 @@ class AssetsCamel {
 const assetsCamel = AssetsCamel();
 
 /// snake case naming
-@assetsAnnotationSnake
+@AssetsAnnotation.snakeCase(version: '1.0.0')
 class AssetsSnake {
   const AssetsSnake();
 }
@@ -63,6 +63,10 @@ class MyHomePage extends StatelessWidget {
               assets.image.snake_guide.snake_guide,
               assetsCamel.image.snakeGuide.snakeGuide,
               assetsSnake.image.snake_guide.snake_guide),
+          _buildListTile(
+              assets.camelGuide,
+              assetsCamel.camelGuide,
+              assetsSnake.camel_guide),
         ],
       ),
     );

@@ -14,10 +14,10 @@ Add the following to your `pubspec.yaml`:
 
 ```sh
 dependencies:
-  assets_annotation_by_zpdl: <latest>
+  assets_annotation_by_zpdl: ^1.1.0
 
 dev_dependencies:
-  assets_generator_by_zpdl: <latest>
+  assets_generator_by_zpdl: ^1.1.0
   build_runner: <latest>
 ```
 
@@ -30,7 +30,7 @@ import 'package:assets_annotation_by_zpdl/assets_annotation_by_zpdl.dart';
 
 part 'assets.g.dart';
 
-@AssetsAnnotation()
+@AssetsAnnotation.camelCase(version: '1.0.0')
 class Assets {
   const Assets();
 }
@@ -58,3 +58,4 @@ print(assets.animation.animation);
 
 1. isCamelCase : The first letter is written in lowercase. The first letter of the rest of the following words is capitalized.
 2. isSnakeCase : Place an underline in the middle of each word joined.
+3. version: Used for update
