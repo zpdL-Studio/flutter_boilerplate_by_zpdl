@@ -1,3 +1,7 @@
+## 1.1.0
+
+* add version
+
 ## 1.0.3
 
 * lib/assets_annotation_by_zpdl.dart is not formatted according to dartfmt

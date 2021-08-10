@@ -1,9 +1,5 @@
 library assets_annotation_by_zpdl;
 
-const assetsAnnotation = AssetsAnnotation();
-const assetsAnnotationCamel = AssetsAnnotation(isCamelCase: true);
-const assetsAnnotationSnake = AssetsAnnotation(isSnakeCase: true);
-
 /// Annotation for assets_generator_by_zpdl package
 class AssetsAnnotation {
   /// Camel case enable value
@@ -16,5 +12,13 @@ class AssetsAnnotation {
   /// ex) is_snake_case
   final bool isSnakeCase;
 
-  const AssetsAnnotation({this.isCamelCase = false, this.isSnakeCase = false});
+  /// Version
+  final String version;
+
+  const AssetsAnnotation(
+      {this.isCamelCase = false, this.isSnakeCase = false, this.version = ''});
+
+  const AssetsAnnotation.camelCase({this.isCamelCase = true, this.isSnakeCase = false, this.version = ''});
+
+  const AssetsAnnotation.snakeCase({this.isCamelCase = false, this.isSnakeCase = true, this.version = ''});
 }

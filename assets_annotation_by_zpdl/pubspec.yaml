@@ -1,6 +1,6 @@
 name: assets_annotation_by_zpdl
 description: annotaion for the assets_generator_by_zpdl package. Incluud only AssetsAnnotation class.
-version: 1.0.3
+version: 1.1.0
 homepage: https://github.com/zpdL-Studio/flutter_boilerplate_by_zpdl
 
 environment:

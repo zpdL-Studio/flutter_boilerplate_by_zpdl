@@ -1,6 +1,6 @@
 #A library for Flutter developers.
 
-Annotaion for the assets_generator_by_zpdl package. Incluud only AssetsAnnotation class.
+Annotaion for the assets_generator_by_zpdl package. Include only AssetsAnnotation class.
 
 ## Usage
 
@@ -13,6 +13,6 @@ main() {
   var assets = Assets();
 }
 
-@assetsAnnotation
+@AssetsAnnotation.camelCase(version: '1.0.0')
 class Assets {}
 ```
