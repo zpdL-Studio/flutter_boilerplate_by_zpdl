@@ -1,43 +1,182 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'bloc.dart';
-import 'exception/bloc_not_found_exception.dart';
+import 'bloc_exception.dart';
 
-typedef BLoCBuilderCallback<T extends BLoC> = Widget Function(BuildContext context, T bLoC);
+typedef BLoCProviderBinding = void Function(BLoCProviderState provider);
 
-abstract class BLoCProvider<T extends BLoC> extends StatefulWidget {
+class _BLoCProviderKey {
+  final dynamic tag;
+  final Type type;
 
-  final BLoCBuilderCallback<T> builder;
+  _BLoCProviderKey(this.tag, this.type);
 
-  const BLoCProvider({Key? key, required this.builder}) : super(key: key);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _BLoCProviderKey &&
+              runtimeType == other.runtimeType &&
+              tag == other.tag &&
+              type == other.type;
+
+  @override
+  int get hashCode => tag.hashCode ^ type.hashCode;
 }
 
-abstract class BLoCConsumer<T extends BLoC> extends StatelessWidget {
+class BLoCProviders {
 
-  static T of<T extends BLoC>(BuildContext context) {
-    throw BLoCNotFoundException('BLoCConsumer T : $T');
+  static final BLoCProviders _instance = BLoCProviders._();
+
+  static final BLoCProviders instance = _instance;
+
+  BLoCProviders._();
+
+  final List<BLoCProvider> providers = [];
+  final Map<_BLoCProviderKey, BLoC> _bLoCs = {};
+
+  T find<T extends BLoC>({dynamic tag}) {
+    final bLoC = _bLoCs[_BLoCProviderKey(tag, T)];
+    if(bLoC != null) {
+      return bLoC as T;
+    }
+
+    throw BLoCNotFoundException();
   }
 
-  final BLoCBuilderCallback<T> builder;
+  BLoC? _findByKey(_BLoCProviderKey key) => _bLoCs[key];
 
-  const BLoCConsumer({Key? key, required this.builder}) : super(key: key);
+  void add(BuildContext context, BLoC bLoC, {dynamic tag}) {
+    context.visitAncestorElements((element) {
+      if (element is StatefulElement && element.state is BLoCProviderState) {
+        print('KKH addBLoC ${element.state}');
+        return true;
+      }
+      print('KKH addBLoC Not Found $element');
+      return false;
+    });
+  }
+
+  bool _addByKey(_BLoCProviderKey key, BLoC bLoC) {
+    if(_bLoCs.containsKey(key)) {
+      return false;
+    }
+    _bLoCs[key] = bLoC;
+    return true;
+  }
+
+  BLoC? _removeByKey(_BLoCProviderKey key) => _bLoCs.remove(key);
+
+  void _addBLoCProviderState(BLoCProvider provider) {
+    for (final provider in providers) {
+      provider.pauseProvider();
+    }
+
+    providers.add(provider..resumeProvider());
+  }
+
+  void _removeBLoCProviderState(BLoCProvider provider) {
+    providers.remove(provider..pauseProvider());
+    if (providers.isNotEmpty) providers.last.resumeProvider();
+  }
+}
+
+class BLoCProviderWidget extends StatefulWidget {
+  final BLoCProviderBinding? binding;
+  final WidgetBuilder builder;
+
+  const BLoCProviderWidget({Key? key, this.binding, required this.builder}) : super(key: key);
+
+  @override
+  BLoCProviderState createState() => BLoCProviderState();
+}
+
+class BLoCProviderState extends State<BLoCProviderWidget> with BLoCProvider {
+
+  @override
+  void initState() {
+    super.initState();
+
+    initProvider();
+    widget.binding?.call(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    disposeProvider();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return builder(context, BLoCConsumer.of<T>(context));
+    return widget.builder(context);
   }
 }
 
-abstract class BLoCBuilder<T extends BLoC> extends StatelessWidget {
+mixin BLoCProvider<T extends StatefulWidget> on State<T> {
+  final List<_BLoCProviderKey> _bLoCKeys = [];
+  bool _resumeProvider = false;
 
-  final T _bloC;
-
-  const BLoCBuilder(T bLoC): _bloC = bLoC;
-
-  @override
-  Widget build(BuildContext context) {
-    return builder(context, _bloC);
+  void initProvider() {
+    BLoCProviders.instance._addBLoCProviderState(this);
   }
 
-  Widget builder(BuildContext context, T bLoC);
+  void disposeProvider() {
+    BLoCProviders.instance._removeBLoCProviderState(this);
+
+    for(final key in _bLoCKeys) {
+      final bLoC = BLoCProviders.instance._removeByKey(key);
+      if(bLoC != null) {
+        bLoC.onBLoCDisposed = null;
+        bLoC.dispose();
+      }
+    }
+    _bLoCKeys.clear();
+  }
+
+  void resumeProvider() {
+    if(!_resumeProvider) {
+      _resumeProvider = true;
+      for (final key in _bLoCKeys) {
+        final bLoC = BLoCProviders.instance._removeByKey(key);
+        if (bLoC is BLoCLifeCycle) {
+          (bLoC as BLoCLifeCycle).resumeProvider();
+        }
+      }
+    }
+  }
+
+  void pauseProvider() {
+    if(_resumeProvider) {
+      _resumeProvider = false;
+      for (final key in _bLoCKeys) {
+        final bLoC = BLoCProviders.instance._findByKey(key);
+        if (bLoC is BLoCLifeCycle) {
+          (bLoC as BLoCLifeCycle).pauseProvider();
+        }
+      }
+    }
+  }
+
+  BLoC _initBLoC(_BLoCProviderKey key, BLoC bLoC) {
+    bLoC.onBLoCDisposed = (_) {
+      if(_bLoCKeys.remove(key)) {
+        BLoCProviders.instance._removeByKey(key);
+      }
+    };
+
+    if(bLoC is BLoCContext) {
+      bLoC.onContext = () => context;
+    }
+    bLoC.init();
+    return bLoC;
+  }
+
+  void addBLoC(BLoC bLoC, {dynamic tag}) {
+    final key = _BLoCProviderKey(tag, bLoC.runtimeType);
+    if(BLoCProviders.instance._addByKey(key, bLoC)) {
+      _bLoCKeys.add(key);
+      _initBLoC(key, bLoC);
+    }
+  }
 }

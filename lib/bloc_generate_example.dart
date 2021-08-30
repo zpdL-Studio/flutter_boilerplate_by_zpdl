@@ -14,25 +14,25 @@ class BLoCTest {
   BLoCTest({required this.firstName, required this.lastName, this.dateOfBirth, required this.callback, this.callbackNullable, required this.callbackParam});
 }
 
-@BLoCStateAnnotation(parameter: BLoCTest, providerName: 'BLoCTestProvider', providerBuilder: BLoCTestBuilder)
-class BLoCTestBLoC extends $BLoCTestBLoC {
+// @BLoCStateAnnotation(parameter: BLoCTest, providerName: 'BLoCTestProvider', providerBuilder: BLoCTestBuilder)
+// class BLoCTestBLoC extends $BLoCTestBLoC {
+//
+//   @override
+//   void disposeBLoC() {
+//     // TODO: implement disposeBLoC
+//   }
+// }
 
-  @override
-  void disposeBLoC() {
-    // TODO: implement disposeBLoC
-  }
-}
 
-
-class BLoCTestBuilder extends BLoCBuilder<BLoCTestBLoC> {
-  BLoCTestBuilder(BLoCTestBLoC bLoC) : super(bLoC);
-
-  @override
-  Widget builder(BuildContext context, BLoCTestBLoC bLoC) {
-    // TODO: implement builder
-    throw UnimplementedError();
-  }
-}
+// class BLoCTestBuilder extends BLoCBuilder<BLoCTestBLoC> {
+//   BLoCTestBuilder(BLoCTestBLoC bLoC) : super(bLoC);
+//
+//   @override
+//   Widget builder(BuildContext context, BLoCTestBLoC bLoC) {
+//     // TODO: implement builder
+//     throw UnimplementedError();
+//   }
+// }
 
 // class $BLoCTest {
 //
