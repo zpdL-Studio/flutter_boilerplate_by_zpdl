@@ -40,8 +40,6 @@ dev_dependencies:
     sdk: flutter
   pedantic: ^1.11.0
   build_runner: ^2.0.6
-  bloc_generator_by_zpdl:
-    path: bloc_generator_by_zpdl
   assets_generator_by_zpdl:
     path: assets_generator_by_zpdl
 
