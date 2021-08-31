@@ -162,6 +162,9 @@ mixin BLoCProvider<T extends StatefulWidget> on State<T> {
     bLoC.onBLoCDisposed = (_) {
       if(_bLoCKeys.remove(key)) {
         BLoCProviders.instance._removeByKey(key);
+        if(_ is BLoCContext) {
+          _.onContext = null;
+        }
       }
     };
 

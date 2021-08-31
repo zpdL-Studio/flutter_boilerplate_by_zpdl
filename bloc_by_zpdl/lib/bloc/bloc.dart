@@ -19,10 +19,6 @@ abstract class BLoC extends ChangeNotifier {
 
     onBLoCDisposed?.call(this);
     onBLoCDisposed = null;
-
-    if(this is BLoCContext) {
-      (this as BLoCContext)._contextDispose();
-    }
   }
 }
 
@@ -35,10 +31,6 @@ mixin BLoCContext on BLoC {
       onContext();
     }
     throw BLoCContextException();
-  }
-
-  void _contextDispose() {
-    onContext = null;
   }
 }
 
