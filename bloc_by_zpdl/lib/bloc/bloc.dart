@@ -7,12 +7,13 @@ typedef OnBLoCContext = BuildContext Function();
 
 
 /// Business Logic Component
-abstract class BLoC extends ChangeNotifier {
+class BLoC extends ChangeNotifier {
 
   OnBLoCDisposed? onBLoCDisposed;
 
-  void init();
+  void init() {}
 
+  @mustCallSuper
   @override
   void dispose() {
     super.dispose();
@@ -34,7 +35,7 @@ mixin BLoCContext on BLoC {
   }
 }
 
-mixin BLoCLifeCycle {
+mixin BLoCLifeCycle on BLoC{
 
   void onResume();
 

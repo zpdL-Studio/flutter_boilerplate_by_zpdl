@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'bloc.dart';
 import 'bloc_exception.dart';
 
-typedef BLoCProviderBinding = void Function(BLoCProviderState provider);
+typedef BLoCProviderBinding = void Function(BLoCProvider provider);
 
 class _BLoCProviderKey {
   final dynamic tag;
@@ -140,7 +140,7 @@ mixin BLoCProvider<T extends StatefulWidget> on State<T> {
       for (final key in _bLoCKeys) {
         final bLoC = BLoCProviders.instance._removeByKey(key);
         if (bLoC is BLoCLifeCycle) {
-          (bLoC as BLoCLifeCycle).resumeProvider();
+          bLoC.resumeProvider();
         }
       }
     }
@@ -152,7 +152,7 @@ mixin BLoCProvider<T extends StatefulWidget> on State<T> {
       for (final key in _bLoCKeys) {
         final bLoC = BLoCProviders.instance._findByKey(key);
         if (bLoC is BLoCLifeCycle) {
-          (bLoC as BLoCLifeCycle).pauseProvider();
+          (bLoC).pauseProvider();
         }
       }
     }
@@ -180,6 +180,9 @@ mixin BLoCProvider<T extends StatefulWidget> on State<T> {
     if(BLoCProviders.instance._addByKey(key, bLoC)) {
       _bLoCKeys.add(key);
       _initBLoC(key, bLoC);
+      if (_resumeProvider && bLoC is BLoCLifeCycle) {
+        bLoC.resumeProvider();
+      }
     }
   }
 }

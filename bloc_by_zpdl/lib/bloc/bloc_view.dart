@@ -24,44 +24,83 @@ class BLoCState<B extends BLoC> {
   }
 }
 
-abstract class BLoCView<T extends BLoC> extends StatefulWidget {
+abstract class BLoCView<T extends BLoC> extends StatelessWidget implements Widget {
+  BLoCView({Key? key, dynamic tag})
+      : bLoC = BLoCProviders.instance.find(tag: tag),
+        super(key: key);
 
-  const BLoCView({Key? key,}) : super(key: key);
-
-  final dynamic tag = null;
+  final T bLoC;
 
   @override
-  _BLoCViewState<T> createState() => _BLoCViewState<T>();
-
-  Widget build(BuildContext context, T bLoC);
+  StatelessElement createElement() => _BLoCViewElement(this);
 }
 
-class _BLoCViewState<T extends BLoC> extends State<BLoCView<T>> {
+class _BLoCViewElement extends StatelessElement {
 
-  final b = BLoCState<T>();
+  _BLoCViewElement(BLoCView widget) : super(widget);
 
   @override
-  void initState() {
-    super.initState();
-    b.bLoCStateInit(widget.tag, _handleBLoCChanged);
+  BLoCView get widget => super.widget as BLoCView;
+
+  @override
+  void mount(Element? parent, Object? newSlot) {
+    final bLoC = widget.bLoC;
+    bLoC.addListener(markNeedsBuild);
+    if(bLoC is BLoCLifeCycle) {
+      bLoC.attachView();
+    }
+    super.mount(parent, newSlot);
   }
 
   @override
-  void dispose() {
-    b.bLoCStateDispose(_handleBLoCChanged);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.build(context, b.bLoc);
-  }
-
-  void _handleBLoCChanged() {
-    setState(() {
-    });
+  void unmount() {
+    final bLoC = widget.bLoC;
+    bLoC.removeListener(markNeedsBuild);
+    if(bLoC is BLoCLifeCycle) {
+      bLoC.detachView();
+    }
+    super.unmount();
   }
 }
+// abstract class BLoCView<T extends BLoC> extends StatefulWidget {
+//
+//   const BLoCView({Key? key,}) : super(key: key);
+//
+//   final dynamic tag = null;
+//   T get bLoC => BLoCProviders.instance.find(tag: tag);
+//
+//   @override
+//   _BLoCViewState<T> createState() => _BLoCViewState<T>();
+//
+//   Widget build(BuildContext context);
+// }
+//
+// class _BLoCViewState<T extends BLoC> extends State<BLoCView<T>> {
+//
+//   final b = BLoCState<T>();
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     b.bLoCStateInit(widget.tag, _handleBLoCChanged);
+//   }
+//
+//   @override
+//   void dispose() {
+//     b.bLoCStateDispose(_handleBLoCChanged);
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return widget.build(context);
+//   }
+//
+//   void _handleBLoCChanged() {
+//     setState(() {
+//     });
+//   }
+// }
 
 class BLoCBuilder<T extends BLoC> extends StatefulWidget {
 
