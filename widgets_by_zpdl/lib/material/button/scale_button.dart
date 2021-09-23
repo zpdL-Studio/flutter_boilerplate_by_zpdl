@@ -84,7 +84,7 @@ class _ScaleButtonState extends State<ScaleButton> {
   }
 
   Widget _buildAnimatedScale(Widget child) {
-    return AnimatedScale(
+    return ZAnimatedScale(
       scale: _pressed ? (widget.pressScale ?? configPressScale) : 1.0,
       duration: widget.duration,
       child: child

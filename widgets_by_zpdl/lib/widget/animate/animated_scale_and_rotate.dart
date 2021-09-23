@@ -4,13 +4,13 @@ import 'package:flutter/widgets.dart';
 
 import '../../config.dart';
 
-class AnimatedScale extends StatelessWidget {
+class ZAnimatedScale extends StatelessWidget {
 
   final Widget child;
   final double scale;
   final Duration? duration;
 
-  const AnimatedScale({Key? key, required this.child, required this.scale, this.duration,}) : super(key: key);
+  const ZAnimatedScale({Key? key, required this.child, required this.scale, this.duration,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
