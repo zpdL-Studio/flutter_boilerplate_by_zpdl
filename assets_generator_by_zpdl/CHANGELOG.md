@@ -1,3 +1,8 @@
+## 1.1.1
+
+* analyzer: ^2.8.0
+* source_gen: ^1.2.0
+
 ## 1.1.0
 
 * add version
