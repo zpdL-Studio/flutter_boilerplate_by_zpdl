@@ -1,10 +1,5 @@
-include: package:pedantic/analysis_options.yaml
+iinclude: package:lints/recommended.yaml
 
 linter:
   rules:
-    file_names: true
-    type_annotate_public_apis: true
-    prefer_mixin: true
-    prefer_relative_imports: true
-    directives_ordering: true
-#    public_member_api_docs: false
+    constant_identifier_names: false
