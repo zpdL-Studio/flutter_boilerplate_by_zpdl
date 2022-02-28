@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  contract_by_zpdl:
+    path: ..
+
 dev_dependencies:
 
 flutter:

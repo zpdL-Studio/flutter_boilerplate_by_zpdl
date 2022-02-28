@@ -8,6 +8,8 @@ import 'page.dart';
 part 'presenter.dart';
 part 'router.dart';
 
+Contract get contract => Contract.instance;
+
 class Contract {
 
   static final Contract _instance = Contract._();

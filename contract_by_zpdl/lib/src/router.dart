@@ -13,6 +13,21 @@ class _Configure {
   List<String> get pathSegments => uri.pathSegments;
 }
 
+class _RouteInformationProvider extends RouteInformationProvider {
+
+  @override
+  void addListener(VoidCallback listener) {
+  }
+
+  @override
+  void removeListener(VoidCallback listener) {
+  }
+
+  @override
+  RouteInformation get value => RouteInformation(location: 'page_1');
+
+}
+
 class _RouteInformationParser extends RouteInformationParser<_Configure> {
 
   const _RouteInformationParser(): super();
