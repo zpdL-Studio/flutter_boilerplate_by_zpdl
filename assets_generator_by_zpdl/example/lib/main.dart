@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 part 'main.g.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 /// original naming
@@ -32,10 +32,12 @@ class AssetsSnake {
 const assetsSnake = AssetsSnake();
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'assets generator by zpdl Demo',
       home: MyHomePage(),
     );
@@ -43,12 +45,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key,}) : super(key: key);
+  const MyHomePage({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Assets generator',)),
+      appBar: AppBar(title: const Text('Assets generator',)),
       body: ListView(
         children: [
           _buildListTile(

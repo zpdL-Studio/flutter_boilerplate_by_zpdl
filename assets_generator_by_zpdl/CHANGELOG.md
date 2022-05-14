@@ -1,3 +1,10 @@
+## 1.1.2
+
+* dart adk 2.17.0
+* analyzer: ^4.0.0
+* yaml: ^3.1.1
+* source_gen: ^1.2.2
+
 ## 1.1.1
 
 * analyzer: ^2.8.0
