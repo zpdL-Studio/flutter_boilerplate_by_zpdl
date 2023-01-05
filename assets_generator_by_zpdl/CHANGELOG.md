@@ -1,3 +1,10 @@
+## 1.1.3
+
+* upadte sdk version
+* analyzer: ^5.2.0
+* build: ^2.3.1
+* source_gen: ^1.2.3
+
 ## 1.1.2
 
 * dart adk 2.17.0
